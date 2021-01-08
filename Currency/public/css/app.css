@@ -1,0 +1,46 @@
+@import "./components/header.css";
+@import "./components//main.css";
+@import "./components/content_chatbot.css";
+@import "./components/content_chatuser.css";
+@import "./components/input.css";
+
+html,
+body {
+    margin: 0px;
+    height: 100%;
+    font-family: "Montserrat", sans-serif;
+    background-image: linear-gradient(
+        to bottom,
+        #122b3b,
+        #113243,
+        #103a4b,
+        #0d4153,
+        #08495b,
+        #055061,
+        #025867,
+        #005f6d,
+        #006773,
+        #007078,
+        #00787c,
+        #00817f
+    );
+}
+* {
+    box-sizing: border-box;
+}
+/*
+.main__content__chat--input input{
+    width: 60%;
+    height: 3rem;
+    border-radius: 3rem;
+}
+
+.main__content__chat--input button{
+    width: 39%;
+    height: 3rem;
+    border-radius: 2rem;
+    background-color: #00817f;
+    color: white;
+    font-size: 1rem;
+}
+*/

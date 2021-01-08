@@ -1,0 +1,26 @@
+.main__content__chat {
+    margin: 3rem;
+}
+.main__content__chat__message {
+    background-color: #c5f5ff;
+    font-size: 1rem;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    margin: 0.75rem;
+    width: 50%;
+    list-style: none;
+}
+.main__content__chat__message li {
+    line-height: 2rem;
+}
+.main__content__chat__user {
+    margin: 0;
+}
+.main__content__chat--input {
+    padding-right: 30px;
+    padding-left: 30px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+}

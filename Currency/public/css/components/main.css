@@ -1,0 +1,27 @@
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 90%;
+    border-radius: 0px 0px 40px 40px;
+}
+.main__title {
+    color: white;
+    font-size: 25px;
+}
+.main__content {
+    border-radius: 80px 80px 0% 0%;
+    box-shadow: -1.5rem -5px 50px #0a171f;
+    background-color: white;
+    overflow: scroll;
+    padding-left: 30px;
+    margin-top: 50px;
+    width: 60%;
+    height: 100%;
+    align-content: flex-end;
+    position: relative;
+}
+::-webkit-scrollbar {
+    display: none;
+}

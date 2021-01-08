@@ -1,0 +1,151 @@
+.main__content__response{
+    margin: 3rem;
+}
+.main__content__response hr{
+    height: 3px;
+    background-color: #00817f;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    width: 90%;
+}
+.main__content__response__checkbox {
+    display: none;
+}
+.main__content__response__checkbox:checked
+    + .main__content__response__container
+    .main__content__response__container--form {
+    width: 100%;
+}
+.main__content__response__checkbox:checked
+    + .main__content__response__container
+    .main__content__response__container--form__toggle {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+.main__content__response__checkbox:checked
+    + .main__content__response__container
+    .main__content__response__container--form__input,
+.main__content__response__checkbox:checked
+    + .main__content__response__container
+    .main__content__response__container--form__label {
+    transition: 0.2s 0.1s;
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+}
+.main__content__response__checkbox:not(:checked)
+    + .main__content__response__container
+    .main__content__response__container--form__input:required:valid
+    ~ .main__content__response__container--form__toggle::before,
+.main__content__response__checkbox:checked
+    + .main__content__response__container
+    .main__content__response__container--form__input:required:valid
+    ~ .main__content__response__container--form__toggle::before {
+    content: "Thank You! \1F60A";
+}
+.main__content__response__checkbox:not(:checked)
+    + .main__content__response__container
+    .main__content__response__container--form__input:required:valid
+    ~ .main__content__response__container--form__toggle {
+    pointer-events: none;
+    cursor: default;
+}
+.main__content__response__container,
+.main__content__response__container--form,
+.main__content__response__container--form__toggle {
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100%;
+    height: 3.25rem;
+}
+.main__content__response__container {
+    position: relative;
+    font-weight: 700;
+}
+.main__content__response__container--form,
+.main__content__response__container--form__toggle {
+    position: absolute;
+    border-radius: 6.25em;
+    background-color: #fff;
+    transition: 0.2s;
+}
+.main__content__response__container--form {
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.625em;
+    box-sizing: border-box;
+    box-shadow: 0 0.125em 0.3125em rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+}
+.main__content__response__container--form__toggle {
+    color: #00817f;
+    top: 0;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main__content__response__container--form__toggle::before {
+    font-size: 1.25rem;
+    content: attr(data-title);
+}
+.main__content__response__container--form__input,
+.main__content__response__container--form__button {
+    font: inherit;
+    border: 0;
+    outline: 0;
+    border-radius: 5em;
+    box-sizing: border-box;
+}
+.main__content__response__container--form__input,
+.main__content__response__container--form__label {
+    font-size: 1.25em;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.7);
+    transition: 0s;
+}
+.main__content__response__container--form__input {
+    color: #477978;
+    height: 100%;
+    width: 100%;
+    padding: 0 0.714em;
+}
+.main__content__response__container--form__input::placeholder {
+    color: currentColor;
+}
+.main__content__response__container--form__input:required:valid {
+    color: #00817f;
+}
+.main__content__response__container--form__input:required:valid
+    + .main__content__response__container--form__label {
+    color: #fff;
+}
+.main__content__response__container--form__input:required:valid
+    + .main__content__response__container--form__label::before {
+    pointer-events: initial;
+}
+.main__content__response__container--form__label {
+    color: white;
+    height: 100%;
+    width: auto;
+}
+.main__content__response__container--form__label::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    cursor: pointer;
+}
+.main__content__response__container--form__button {
+    color: inherit;
+    padding: 0;
+    height: 100%;
+    width: 6rem;
+    background-color:#00817f;
+}

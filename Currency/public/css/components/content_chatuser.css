@@ -1,0 +1,16 @@
+.main__content__chat-sender {
+    margin: 3rem;
+}
+.main__content__chat-sender__message {
+    background-color: #71ebe9;
+    float: right;
+    font-size: 1rem;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    margin: 0.75rem;
+    width: 50%;
+}
+.main__content__chat-sender__user {
+    text-align: -webkit-right;
+    margin: 0;
+}
