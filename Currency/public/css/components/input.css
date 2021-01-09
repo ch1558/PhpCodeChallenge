@@ -28,22 +28,11 @@
     + .main__content__response__container
     .main__content__response__container--form__input,
 .main__content__response__checkbox:checked
-    + .main__content__response__container
-    .main__content__response__container--form__label {
+    + .main__content__response__container {
     transition: 0.2s 0.1s;
     visibility: visible;
     opacity: 1;
     transform: scale(1);
-}
-.main__content__response__checkbox:not(:checked)
-    + .main__content__response__container
-    .main__content__response__container--form__input:required:valid
-    ~ .main__content__response__container--form__toggle::before,
-.main__content__response__checkbox:checked
-    + .main__content__response__container
-    .main__content__response__container--form__input:required:valid
-    ~ .main__content__response__container--form__toggle::before {
-    content: "Thank You! \1F60A";
 }
 .main__content__response__checkbox:not(:checked)
     + .main__content__response__container
@@ -101,8 +90,7 @@
     border-radius: 5em;
     box-sizing: border-box;
 }
-.main__content__response__container--form__input,
-.main__content__response__container--form__label {
+.main__content__response__container--form__input {
     font-size: 1.25em;
     opacity: 0;
     visibility: hidden;
@@ -122,30 +110,21 @@
     color: #00817f;
 }
 .main__content__response__container--form__input:required:valid
-    + .main__content__response__container--form__label {
+    + .main__content__response__container--form__button {
     color: #fff;
 }
-.main__content__response__container--form__input:required:valid
-    + .main__content__response__container--form__label::before {
+.main__content__response__container--form__input:required:valid {
     pointer-events: initial;
 }
-.main__content__response__container--form__label {
+.main__content__response__container--form__button {
     color: white;
     height: 100%;
     width: auto;
 }
-.main__content__response__container--form__label::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    cursor: pointer;
-}
 .main__content__response__container--form__button {
-    color: inherit;
     padding: 0;
     height: 100%;
     width: 6rem;
     background-color:#00817f;
+    color: white;
 }

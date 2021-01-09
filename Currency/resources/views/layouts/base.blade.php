@@ -14,17 +14,22 @@
     </head>
 
     <body>
-
         <header class="header">
             <h1 class="header__title">Currency Bot</h1>
             <div class="header__menu">
                 <div class="header__menu--profile">
                     <img src={{asset('img/user-icon.png')}} alt="user_profile" />
-                    <p>You don't sing up</p>
+                    @if(isset(auth()->user()->name))
+                        <p>{{ auth()->user()->name }}</p>
+                    @else
+                        <p>Guest</p>
+                    @endif
                 </div>
-                <ul>
-                    <li><a href="{{ route('logout') }}">Sign off</a></li>
-                </ul>
+                @if(isset(auth()->user()->name))
+                    <ul>
+                        <li><a href="{{ route('logout') }}">Sign off</a></li>
+                    </ul>
+                @endif
             </div>
         </header>
 
@@ -33,8 +38,6 @@
                 @yield('content')
             </div>
         </section>  
-
-        @yield('script')
     </body>
     
 </html>

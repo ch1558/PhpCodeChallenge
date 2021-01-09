@@ -5,20 +5,14 @@
 @section('content')
     <div class="main__content__chat">
         <p class="main__content__chat__user">Currency bot</p>
-        <p class="main__content__chat__message">How I can help you?</p>
-        <ul class="main__content__chat__message">
-            <li>1. Money Exchange</li>
-            <li>2. Log in</li>
-            <li>3. Sing in</li>
-        </ul>
-        <p class="main__content__chat__message"><strong>Please only response numbers</strong></p>
+        <p class="main__content__chat__message">Please, give me the amount of money you want exchange.</p>
     </div>
 
     <div class="main__content__response">
         <hr>
         <input class="main__content__response__checkbox" type="checkbox" id="checkbox">
         <div class="main__content__response__container">
-            <form class="main__content__response__container--form" method="get" action="{{ route('firstLevel') }}">
+            <form class="main__content__response__container--form" method="get" action="{{ route('exchangeMoney') }}">
                 <input name="option" class="main__content__response__container--form__input" 
                     placeholder="Insert yout answer" type="number" min="1" max="3" required>
                 <button class="main__content__response__container--form__button" type="submit">Send</button>

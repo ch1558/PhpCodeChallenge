@@ -4,6 +4,7 @@
 .main__content__chat-sender__message {
     background-color: #71ebe9;
     float: right;
+    text-align: -webkit-right;
     font-size: 1rem;
     border-radius: 1rem;
     padding: 1rem 2rem;
