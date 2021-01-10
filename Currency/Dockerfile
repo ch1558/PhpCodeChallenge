@@ -1,5 +1,7 @@
 FROM php:7.4-fpm
 
+LABEL maintainer="Juan Hernandez <devs.juanh@gmail.com>"
+
 # Arguments defined in docker-compose.yml
 ARG user
 ARG uid

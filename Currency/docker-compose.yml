@@ -11,6 +11,7 @@ services:
         container_name: currency-app
         restart: unless-stopped
         working_dir: /var/www/
+        tty: true
         volumes:
             - ./:/var/www
         networks:
@@ -28,6 +29,7 @@ services:
             SERVICE_TAGS: dev
             SERVICE_NAME: mysql
         volumes:
+            - ./storage/db:/var/lib/mysql
             - ./docker-compose/mysql:/docker-entrypoint-initdb.d
         networks:
             - currency
