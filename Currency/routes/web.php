@@ -19,7 +19,8 @@ Route::post('/register',  [PageController::class,  'register'])->name('register'
 //Redirects
 Route::get('/redirect-exchange',         [PageController::class,    'redirectExchange'])->name('redirectExchange');
 Route::get('/redirect-default-currency', [AccountController::class, 'redirectDefaultCurrency'])->name('redirectDefaultCurrency');
-Route::get('/redirect-deposit',          [AccountController::class, 'redirectDeposit'])->name('redirectDeposit');
+Route::get('/redirect-deposit-money',    [AccountController::class, 'redirectDeposit'])->name('redirectDeposit');
+Route::get('/redirect-withdraw-money',   [AccountController::class, 'redirectWithdraw'])->name('redirectWithdraw');
 
 //Managment of menu first-level for auth user
 Route::get("/auth",      [AccountController::class, 'index'])->name('indexOfAuth');

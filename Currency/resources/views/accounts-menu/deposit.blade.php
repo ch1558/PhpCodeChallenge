@@ -50,20 +50,20 @@
                 <p class="main__content__chat__message"><strong>Please only response numbers</strong></p>
             </div>
 
-        <div class="main__content__response">
-            <hr>
-            <input class="main__content__response__checkbox" type="checkbox" id="checkbox">
-            <div class="main__content__response__container">
-                <form class="main__content__response__container--form" method="get" action="{{ route('redirectDeposit') }}">
-                    <input name="amount" value="{{ $amount }}" hidden>
-                    <input name="depositCurrency" value="{{ $depositCurrency }}" hidden>
-                    <input name="optionConfirm" class="main__content__response__container--form__input" 
-                        placeholder="Insert yout answer" type="number" min="1" max="3" required>
-                    <button class="main__content__response__container--form__button" type="submit">Send</button>
-                    <label class="main__content__response__container--form__toggle" for="checkbox" data-title="Click here"></label>
-                </form>
+            <div class="main__content__response">
+                <hr>
+                <input class="main__content__response__checkbox" type="checkbox" id="checkbox">
+                <div class="main__content__response__container">
+                    <form class="main__content__response__container--form" method="get" action="{{ route('redirectDeposit') }}">
+                        <input name="amount" value="{{ $amount }}" hidden>
+                        <input name="depositCurrency" value="{{ $depositCurrency }}" hidden>
+                        <input name="optionConfirm" class="main__content__response__container--form__input" 
+                            placeholder="Insert yout answer" type="number" min="1" max="3" required>
+                        <button class="main__content__response__container--form__button" type="submit">Send</button>
+                        <label class="main__content__response__container--form__toggle" for="checkbox" data-title="Click here"></label>
+                    </form>
+                </div>
             </div>
-        </div>
         @endif
     @endif
 

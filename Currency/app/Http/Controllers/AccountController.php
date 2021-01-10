@@ -86,7 +86,35 @@ class AccountController extends Controller{
                     ->with('warning', $warning)
                     ->with('depositCurrency', $depositCurrency);
             case 3:
-                
+                $input   = 'withdrawCurrency';
+                $warning = isset($request->warning) ? $request->warning : $warning;                
+                $withdrawCurrency = strtoupper($request->withdrawCurrency) == 'DEF' ? $userCurrency->acronym : $request->withdrawCurrency;
+                $withdrawCurrency = $api->isValidCurrency($withdrawCurrency);    
+
+                if($withdrawCurrency=="invalid"){
+                    $withdrawCurrency = "";
+                    $error = "Invalid code for currency";
+                }else{
+                    $error = "";
+                }
+
+                $max = $withdrawCurrency == $userCurrency->acronym
+                        ? auth()->user()->balance
+                        : $api->convertCurrency(auth()->user()->balance, $userCurrency->acronym, strtoupper($request->withdrawCurrency));
+
+                $limit = "Remember that the maximum amount can withdraw is ".$max." in ".$withdrawCurrency;
+
+                return view('accounts-menu.withdraw')
+                    ->with('url',     $url)
+                    ->with('option',  $option)
+                    ->with('method',  $method)
+                    ->with('input',   $input)
+                    ->with('amount',  $amount)
+                    ->with('error',   $error)
+                    ->with('warning', $warning)
+                    ->with('limit',   $limit)
+                    ->with('max',     $max)
+                    ->with('withdrawCurrency', $withdrawCurrency);
             case 4:
 
             case 5:
@@ -164,6 +192,30 @@ class AccountController extends Controller{
             case '2':
                 return redirect()->route('firstLevelOfAuth',[
                     'option' => '2', 
+                    'warning'  => "let's try again"
+                ]);
+            default:
+                return redirect()->route('index');
+        }
+    }
+
+    public function redirectWithdraw(Request $request){
+        $option = $request->optionConfirm;
+
+        switch ($option) {
+            case '1':
+                $api = new ApiController;
+                $user = User::find(auth()->user()->code);
+                $userCurrency = Currency::find($user->default_currency);
+                $withdraw = $api->convertCurrency($request->amount, strtoupper($request->withdrawCurrency), $userCurrency->acronym);
+                
+                $user->balance = $user->balance - $withdraw;
+                $user->save();
+                
+                return redirect()->route('index');
+            case '2':
+                return redirect()->route('firstLevelOfAuth',[
+                    'option' => '3', 
                     'warning'  => "let's try again"
                 ]);
             default:
