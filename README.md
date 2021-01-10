@@ -25,8 +25,14 @@ This project is for the php code challenge of jobsity, the following steps are f
   Finally, install Docker:
   > sudo apt install docker-ce
   
-  Check that it’s running:
+  Check that it's running:
   > sudo systemctl status docker
+  
+  Now, install docker-compose
+  > cd sudo apt install docker-compose
+  
+  Check that it's running
+  > docker-compose -version
 
 ## SECOND STEP: Install composer
   **if you already have composer in your operating system, please skip this step.**
@@ -44,8 +50,45 @@ This project is for the php code challenge of jobsity, the following steps are f
    Check that it's running or a an update is available
    > sudo composer self-update
   
-  ## SECOND STEP: Clone this repository
+## THIRD STEP: Clone this repository
   First, create a new folder for clone the repository in this location.  
   > mkdir PhpChallenge
+  
+  Next, access to the folder recently created
   > cd PhpChallenge
   
+  Next, clone the repository
+  > git clone https://github.com/ch1558/PhpCodeChallenge.git
+  
+  Now, access to the contains project folder
+  > cd PhpCodeChallenge/Currency
+  
+## FOUR STEP: Deploy the aplication 
+  Once you are on the path where the files are, need run the following commands:
+  
+  First, create app image
+  > sudo docker-compose build-app
+  
+  Next, run the development evironment in the background
+  > sudo docker-compose up -d
+  
+  Now, execute **composer install** for install the aplication dependencies
+  > docker-compose exec app composer install
+
+  Finally, generate the key for encrypt the aplication
+  > docker-compose exec app php artisan key:generate
+
+## FIVE STEP: Configure the database
+  Once yo deploy the aplication, you need manually upload the initial script for database.
+  
+  First, dowload the sql script, the file be on the root of the repository
+  https://github.com/ch1558/PhpCodeChallenge/blob/main/currency.sql
+  
+  Next, you need access to local PhpMyAdmin, please tipe the following url in your browser
+  http://localhost:8004
+  
+  
+  
+  
+  
+
