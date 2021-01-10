@@ -116,7 +116,9 @@ class AccountController extends Controller{
                     ->with('max',     $max)
                     ->with('withdrawCurrency', $withdrawCurrency);
             case 4:
-
+                return view('accounts-menu.balance')
+                    ->with('balance',  auth()->user()->balance)
+                    ->with('currency', $userCurrency->acronym);
             case 5:
                 $input   = 'defaultCurrency';
                 $warning = isset($userCurrency) ? 
@@ -220,6 +222,14 @@ class AccountController extends Controller{
                 ]);
             default:
                 return redirect()->route('index');
+        }
+    }
+
+    public function redirectBalance(Request $request){
+        if(isset($request->optionConfirm) && $request->optionConfirm == 1){
+            return "do a list";
+        }else{
+            return redirect()->route('index');
         }
     }
 
