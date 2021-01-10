@@ -18,7 +18,7 @@
     @if($amount == 0)
         @include('components.money')    
     @else
-        <div class="main__content__chat">
+        <div class="main__content__chat-sender">
             <p class="main__content__chat-sender__user">{{auth()->user()->name}}</p>
             <p class="main__content__chat-sender__message">I have an amount of ${{ $amount }}</p>
         </div>
@@ -34,7 +34,7 @@
         @if($depositCurrency=="")
             @include('components.currency')
         @else
-            <div class="main__content__chat">
+            <div class="main__content__chat-sender">
                 <p class="main__content__chat-sender__user">{{ auth()->user()->name }}</p>
                 <p class="main__content__chat-sender__message">I want to deposit ${{$amount}} {{ $depositCurrency }} into my account.</p>
             </div>

@@ -12,7 +12,7 @@
     @if($name=="")
         @include('components.name')   
     @else
-        <div class="main__content__chat">
+        <div class="main__content__chat-sender">
             <p class="main__content__chat-sender__user">Guest</p>
             <p class="main__content__chat-sender__message">{{ $name }}</p>
         </div>
@@ -27,7 +27,7 @@
         @if($email=="")
             @include('components.email')
         @else
-            <div class="main__content__chat">
+            <div class="main__content__chat-sender">
                 <p class="main__content__chat-sender__user">Guest</p>
                 <p class="main__content__chat-sender__message">{{ $email }}</p>
             </div>

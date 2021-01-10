@@ -22,7 +22,7 @@
     @if($withdrawCurrency=="")
         @include('components.currency')
     @else
-        <div class="main__content__chat">
+        <div class="main__content__chat-sender">
             <p class="main__content__chat-sender__user">{{ auth()->user()->name }}</p>
             <p class="main__content__chat-sender__message"> I want to withdraw an amount in {{ $withdrawCurrency }} from my account </p>
         </div>
@@ -35,7 +35,7 @@
         @if($amount == 0)
             @include('components.money')    
         @else
-            <div class="main__content__chat">
+            <div class="main__content__chat-sender">
                 <p class="main__content__chat-sender__user">{{auth()->user()->name}}</p>
                 <p class="main__content__chat-sender__message">I want to withdraw ${{ $amount }} in {{$withdrawCurrency}} from my account.</p>
             </div>

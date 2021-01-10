@@ -34,7 +34,8 @@
         </header>
 
         <section class="main">
-            <div id="container" class="main__content">
+            <div class="main__content">
+                <div class="main__content_initial-padding"></div>
                 @yield('content')
             </div>
         </section>  

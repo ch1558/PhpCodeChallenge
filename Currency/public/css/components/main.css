@@ -22,6 +22,9 @@
     align-content: flex-end;
     position: relative;
 }
+.main__content_initial-padding{
+    padding: 1.5rem;
+}
 ::-webkit-scrollbar {
     display: none;
 }

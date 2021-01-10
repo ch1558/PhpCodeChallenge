@@ -22,7 +22,7 @@
     @if($defaultCurrency=="")
         @include('components.currency')
     @else
-        <div class="main__content__chat">
+        <div class="main__content__chat-sender">
             <p class="main__content__chat-sender__user">{{ auth()->user()->name }}</p>
             <p class="main__content__chat-sender__message">I wanna set {{ $defaultCurrency }} like my default currency.</p>
         </div>

@@ -11,7 +11,7 @@
     @if($amount == 0)
         @include('components.money')    
     @else
-        <div class="main__content__chat">
+        <div class="main__content__chat-sender">
             <p class="main__content__chat-sender__user">{{auth()->user()->name ?? 'guest'}}</p>
             <p class="main__content__chat-sender__message">I have an amount of ${{ $amount }}</p>
         </div>
@@ -27,7 +27,7 @@
         </div>
 
         @if($input=="newCurrency")
-            <div class="main__content__chat">
+            <div class="main__content__chat-sender">
                 <p class="main__content__chat-sender__user">{{auth()->user()->name ?? 'guest'}}</p>
                 <p class="main__content__chat-sender__message">I have ${{ $amount }} {{$currentCurrency}}</p>
             </div>
@@ -46,7 +46,7 @@
         @if($exchange == '')
             @include('components.currency')
         @else
-            <div class="main__content__chat">
+            <div class="main__content__chat-sender">
                 <p class="main__content__chat-sender__user">{{auth()->user()->name ?? 'guest'}}</p>
                 <p class="main__content__chat-sender__message">I have ${{ $amount }} {{$currentCurrency}} and want to exchange to {{$newCurrency}}</p>
             </div>
