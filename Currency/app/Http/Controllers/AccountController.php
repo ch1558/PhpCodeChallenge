@@ -159,9 +159,13 @@ class AccountController extends Controller{
 
         switch ($option) {
             case '1':
+                $api = new ApiController;
                 $user = User::find(auth()->user()->code);
-                $userCurrency = Currency::where('acronym','=',$request->defaultCurrency)->get()[0];
-                $user->default_currency = $userCurrency->code;
+                $userCurrency = Currency::find(auth()->user()->default_currency);
+                $newCurrency = Currency::where('acronym','=',$request->defaultCurrency)->get()[0];
+
+                $user->balance = $api->convertCurrency($user->balance, $userCurrency->acronym, $newCurrency->acronym);
+                $user->default_currency = $newCurrency->code;
                 $user->save();
 
                 $transaction = new Transaction;
@@ -234,7 +238,17 @@ class AccountController extends Controller{
 
     public function redirectBalance(Request $request){
         if(isset($request->optionConfirm) && $request->optionConfirm == 1){
-            return "do a list";
+            $transactions = Transaction::where('user','=',auth()->user()->code)->get();
+            return view('accounts-menu.transaction')
+                ->with(compact('transactions'));
+        }else{
+            return redirect()->route('index');
+        }
+    }
+
+    public function redirectTransaction(Request $request){
+        if(isset($request->optionConfirm) && $request->optionConfirm == 1){
+            return redirect()->route('firstLevelOfAuth', ['option' => '4',]);
         }else{
             return redirect()->route('index');
         }

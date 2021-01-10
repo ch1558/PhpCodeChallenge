@@ -22,6 +22,7 @@ Route::get('/redirect-default-currency', [AccountController::class, 'redirectDef
 Route::get('/redirect-deposit-money',    [AccountController::class, 'redirectDeposit'])->name('redirectDeposit');
 Route::get('/redirect-withdraw-money',   [AccountController::class, 'redirectWithdraw'])->name('redirectWithdraw');
 Route::get('/redirect-balance-money',    [AccountController::class, 'redirectBalance'])->name('redirectBalance');
+Route::get('/redirect-transactions',     [AccountController::class, 'redirectTransaction'])->name('redirectTransaction');
 
 //Managment of menu first-level for auth user
 Route::get("/auth",      [AccountController::class, 'index'])->name('indexOfAuth');

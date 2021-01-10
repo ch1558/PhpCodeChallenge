@@ -13,8 +13,8 @@ class Transaction extends Model{
         $newTransaction = new Transaction;
 
         $newTransaction->user = $user;
-        $newTransaction->description = $type;
-        $newTransaction->type_transaction = $description." from the ip: ".$this->get_client_ip();
+        $newTransaction->type_transaction = $type;
+        $newTransaction->description = $description." from the ip: ".$this->get_client_ip();
 
         $newTransaction->save();
     }
