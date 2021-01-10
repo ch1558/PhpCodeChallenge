@@ -22,6 +22,8 @@
                     <p class="main__content__chat__message"><strong>{{$error}}</strong></p>
                 @endif
             <p class="main__content__chat__message">Please give me the current currency.</p>
+
+        <p class="main__content__chat__message"><strong>Only give me the acronym, for example if you want to use United States Dollar, you need type USD.</strong></p>
         </div>
 
         @if($input=="newCurrency")
@@ -36,6 +38,8 @@
                     <p class="main__content__chat__message"><strong>{{$error}}</strong></p>
                 @endif
                 <p class="main__content__chat__message">Please give me the currency do you want.</p>
+
+        <p class="main__content__chat__message"><strong>Only give me the acronym, for example if you want to use United States Dollar, you need type USD.</strong></p>
             </div>
         @endif
 

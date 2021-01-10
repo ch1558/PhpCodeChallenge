@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Currency;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
-use App\Models\Currency;
 
 class AccountController extends Controller{
     
@@ -13,20 +14,28 @@ class AccountController extends Controller{
     }
     
     public function index(){
-        return view('accounts-fl.index');
+        return view('accounts-menu.index');
     }
 
     public function firstLevel(Request $request){
+        $error = "";
+        $warning = "";
+        $api = new ApiController;
+        $userCurrency = Currency::find(auth()->user()->default_currency);
+
         //Redirect property set
         $url    = route('firstLevelOfAuth');
         $method = 'get';
         $option = $request->option;
         $amount = isset($request->amount) && is_numeric($request->amount)? $request->amount : 0;
 
+        if(!isset($userCurrency) && $option>=2 && $option<=4){
+            $warning = "First you need establish your default currency";
+            $option = 5;
+        }
+
         switch ($option) {
             case 1:
-                $error = "";
-                $api = new ApiController;
                 $currentCurrency = $api->isValidCurrency($request->currentCurrency);
                 $newCurrency     = $api->isValidCurrency($request->newCurrency);
 
@@ -54,12 +63,70 @@ class AccountController extends Controller{
                     ->with('exchange', $exchange)
                     ->with('currentCurrency', $currentCurrency)
                     ->with('newCurrency',     $newCurrency);
+            case 2:
+                $input   = 'depositCurrency';
+
+                return view('accounts-menu.deposit')
+                    ->with('url',     $url)
+                    ->with('option',  $option)
+                    ->with('method',  $method)
+                    ->with('input',   $input)
+                    ->with('error',   $error);
+            case 3:
+                
+            case 4:
+
+            case 5:
+                $input   = 'defaultCurrency';
+                $warning = isset($userCurrency) ? 
+                                "You had set ".$userCurrency->acronym." like your default currency if you want to change this"
+                                : $warning;
+                $warning = isset($request->warning) ? $warning.' '.$request->warning : $warning;
+                $defaultCurrency = $api->isValidCurrency($request->defaultCurrency);
+
+                if($defaultCurrency=="invalid"){
+                    $defaultCurrency = "";
+                    $error = "Invalid code for currency";
+                }else{
+                    $error = "";
+                }
+
+                return view('accounts-menu.default')
+                    ->with('url',     $url)
+                    ->with('option',  $option)
+                    ->with('method',  $method)
+                    ->with('input',   $input)
+                    ->with('error',   $error)
+                    ->with('warning', $warning)
+                    ->with('defaultCurrency', $defaultCurrency);
             case 6:
                 $loginController = new LoginController;
                 return $loginController->logout($request);
             default:
                 return redirect()->route("indexOfAuth");
         }
+    }
+
+    public function redirectDefaultCurrency(Request $request){
+        $option = $request->optionConfirm;
+
+        switch ($option) {
+            case '1':
+                $user = User::find(auth()->user()->code);
+                $userCurrency = Currency::where('acronym','=',$request->defaultCurrency)->get()[0];
+                $user->default_currency = $userCurrency->code;
+                $user->save();
+
+                return redirect()->route('index');
+            case '2':
+                return redirect()->route('firstLevelOfAuth',[
+                    'option' => '5', 
+                    'warning'  => "let's try again"
+                ]);
+            default:
+                return redirect()->route('index');
+        }
+
     }
 
 }

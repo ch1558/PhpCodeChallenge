@@ -17,8 +17,9 @@ Route::get('/logout',     [LoginController::class, 'logout'])->name('logout');
 Route::post('/register',  [PageController::class,  'register'])->name('register');
 
 //Redirects
-Route::get('/redirect-exchange',      [PageController::class, 'redirectExchange'])->name('redirectExchange');
+Route::get('/redirect-exchange',         [PageController::class, 'redirectExchange'])->name('redirectExchange');
+Route::get('/redirect-default-currency', [AccountController::class, 'redirectDefaultCurrency'])->name('redirectDefaultCurrency');
 
 //Managment of menu first-level for auth user
-Route::get("/auth",       [AccountController::class, 'index'])->name('indexOfAuth');
-Route::get("/auth/menu",  [AccountController::class, 'firstLevel'])->name('firstLevelOfAuth');
+Route::get("/auth",      [AccountController::class, 'index'])->name('indexOfAuth');
+Route::get("/auth/menu", [AccountController::class, 'firstLevel'])->name('firstLevelOfAuth');
