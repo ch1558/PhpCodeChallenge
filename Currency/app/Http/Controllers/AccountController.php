@@ -161,7 +161,11 @@ class AccountController extends Controller{
             case '1':
                 $api = new ApiController;
                 $user = User::find(auth()->user()->code);
-                $userCurrency = Currency::find(auth()->user()->default_currency);
+                if(isset(auth()->user()->default_currency)){
+                    $userCurrency = Currency::find(auth()->user()->default_currency);
+                }else{
+                    $userCurrency = Currency::where('acronym','=',$request->defaultCurrency)->get()[0];
+                }
                 $newCurrency = Currency::where('acronym','=',$request->defaultCurrency)->get()[0];
 
                 $user->balance = $api->convertCurrency($user->balance, $userCurrency->acronym, $newCurrency->acronym);
