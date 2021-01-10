@@ -1,6 +1,6 @@
 # PhpCodeChallenge
 
-This project is for the php code challenge of jobsity.
+This project is for the php code challenge of jobsity, the following steps are for ensure that you can install and run this repository.
 
 ## FIRST STEP: Install docker
   **if you already have docker in your operating system, please skip this step.**
@@ -27,3 +27,6 @@ This project is for the php code challenge of jobsity.
   
   Check that it’s running:
   > sudo systemctl status docker
+
+## SECOND STEP: Install composer
+  **if you already have composer in your operating system, please skip this step.**
