@@ -5,7 +5,7 @@ This project is for the php code challenge of jobsity, the following steps are f
 ## FIRST STEP: Install docker
   **if you already have docker in your operating system, please skip this step.**
 
-  Open a new terminal in your machine and copy de following instructions.
+  Open a new terminal in your machine and copy de following instructions. 
 
   firtst, update your existing list of packages:
   > sudo apt update
@@ -30,3 +30,22 @@ This project is for the php code challenge of jobsity, the following steps are f
 
 ## SECOND STEP: Install composer
   **if you already have composer in your operating system, please skip this step.**
+
+  Before installing Composer, ensure that you have all the necessary requirements installed on your system:
+  > sudo apt update
+  > sudo apt install wget php-cli php-zip unzip
+  
+  Composer offers an installer written in PHP that we’ll use to install Composer. Use wget to download the installer:
+  > wget - composer-setup.php https://getcomposer.org/installer
+  
+  The command above will save the file as composer-setup.php in the current working directory. Composer is a single file CLI application and can be installed either globally or as part of the project. The global installation requires sudo privileges.
+   > sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+   
+   Check that it's running or a an update is available
+   > sudo composer self-update
+  
+  ## SECOND STEP: Clone this repository
+  First, create a new folder for clone the repository in this location.  
+  > mkdir PhpChallenge
+  > cd PhpChallenge
+  
