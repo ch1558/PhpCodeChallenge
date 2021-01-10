@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Currency;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Routing\Route;
 
 class PageController extends Controller{
     
@@ -106,6 +105,10 @@ class PageController extends Controller{
 
         $newUser->save();
         Auth::login($newUser);
+
+        $transaction = new Transaction;
+        $transaction->setLog($newUser->code,5,"The user has been logged in");
+
         return redirect('/');
     }
 

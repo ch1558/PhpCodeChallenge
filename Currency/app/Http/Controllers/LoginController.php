@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +30,9 @@ class LoginController extends Controller{
 
         if(sizeof($user)>0){
             Auth::login($user[0]);
+            $transaction = new Transaction;
+            $transaction->setLog($user[0]->code,5,"The user has been logged in");
+    
             return redirect()->route('indexOfAuth');
         }else{
             return redirect()->route('firstLevel',[

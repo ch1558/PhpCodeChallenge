@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Currency;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoginController;
 
 class AccountController extends Controller{
-    
+
     public function __construct(){
         $this->middleware('auth');
     }
@@ -116,6 +117,9 @@ class AccountController extends Controller{
                     ->with('max',     $max)
                     ->with('withdrawCurrency', $withdrawCurrency);
             case 4:
+                $transaction = new Transaction;
+                $transaction->setLog(auth()->user()->code,3,"The user has requested his balance");
+
                 return view('accounts-menu.balance')
                     ->with('balance',  auth()->user()->balance)
                     ->with('currency', $userCurrency->acronym);
@@ -160,6 +164,9 @@ class AccountController extends Controller{
                 $user->default_currency = $userCurrency->code;
                 $user->save();
 
+                $transaction = new Transaction;
+                $transaction->setLog($user->code,4,"The user has changed his default currency");
+
                 return redirect()->route('index');
             case '2':
                 return redirect()->route('firstLevelOfAuth',[
@@ -176,19 +183,16 @@ class AccountController extends Controller{
 
         switch ($option) {
             case '1':
+                $api = new ApiController;
                 $user = User::find(auth()->user()->code);
-                $deposit = isset($user->balance) ? $user->balance : 0;
                 $userCurrency = Currency::find($user->default_currency);
+                $deposit = $api->convertCurrency($request->amount, strtoupper($request->depositCurrency), $userCurrency->acronym);
 
-                if($userCurrency->acronym == $request->depositCurrency){
-                    $deposit = $deposit+$request->amount;
-                }else{
-                    $api = new ApiController;
-                    $deposit = $api->convertCurrency($request->amount, strtoupper($request->depositCurrency), $userCurrency->acronym);
-                }
-
-                $user->balance = $deposit; 
+                $user->balance = $user->balance+$deposit; 
                 $user->save();
+
+                $transaction = new Transaction;
+                $transaction->setLog($user->code,1,"The user has deposited ".$deposit." ",$userCurrency->acronym);
 
                 return redirect()->route('index');
             case '2':
@@ -213,6 +217,9 @@ class AccountController extends Controller{
                 
                 $user->balance = $user->balance - $withdraw;
                 $user->save();
+
+                $transaction = new Transaction;
+                $transaction->setLog($user->code,2,"The user has deposited ".$withdraw." ",$userCurrency->acronym);
                 
                 return redirect()->route('index');
             case '2':
