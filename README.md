@@ -87,8 +87,22 @@ This project is for the php code challenge of jobsity, the following steps are f
   Next, you need access to local PhpMyAdmin, please tipe the following url in your browser
   http://localhost:8004
   
+  The credentials for acces be:
+ 
+  Server: (Let a blank space)
+  User    : **currency_user** (Is the default user setted in the .env file)
+  Password: **currency_user.123** (Is the default user setted in the .env file)
   
+  Once you login on the phpmyadmin, browse de database currency and select the import function, for upload de sql script previously mentioned. (https://github.com/ch1558/PhpCodeChallenge/blob/main/currency.sql)
   
-  
-  
+## NOW YO CAN ENJOY USING THE CURRENCY BOT
+**Remenber you must ensure that all of steps got done**
+
+For start the aplication you must previously run the following command in the aplication path
+> cd docker-compose up -d
+
+For pause the aplication, once you start it, you must run the following command in the aplication path
+> cd docker-composer dowm
+
+**(if youu need access to the aplication path and you strictly followed the previosly steps, you must execute in your terminal "cd PhpChalleng/PhpCodeChallenge/Currency"**
 
