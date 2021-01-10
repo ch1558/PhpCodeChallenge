@@ -104,5 +104,7 @@ For start the aplication you must previously run the following command in the ap
 For pause the aplication, once you start it, you must run the following command in the aplication path
 > cd docker-composer dowm
 
-**(if youu need access to the aplication path and you strictly followed the previosly steps, you must execute in your terminal "cd PhpChalleng/PhpCodeChallenge/Currency"**
+**(if youu need access to the aplication path and you strictly followed the previosly steps, you must execute in your terminal) 
+> cd PhpChalleng/PhpCodeChallenge/Currency
+**
 
