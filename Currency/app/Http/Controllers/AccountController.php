@@ -65,13 +65,26 @@ class AccountController extends Controller{
                     ->with('newCurrency',     $newCurrency);
             case 2:
                 $input   = 'depositCurrency';
+                $depositCurrency = strtoupper($request->depositCurrency) == 'DEF' ? $userCurrency->acronym : $request->depositCurrency;
+                $depositCurrency = $api->isValidCurrency($depositCurrency);
+                $warning = isset($request->warning) ? $request->warning : $warning;
+
+                if($depositCurrency=="invalid"){
+                    $depositCurrency = "";
+                    $error = "Invalid code for currency";
+                }else{
+                    $error = "";
+                }
 
                 return view('accounts-menu.deposit')
                     ->with('url',     $url)
                     ->with('option',  $option)
                     ->with('method',  $method)
                     ->with('input',   $input)
-                    ->with('error',   $error);
+                    ->with('amount',  $amount)
+                    ->with('error',   $error)
+                    ->with('warning', $warning)
+                    ->with('depositCurrency', $depositCurrency);
             case 3:
                 
             case 4:
@@ -126,7 +139,36 @@ class AccountController extends Controller{
             default:
                 return redirect()->route('index');
         }
+    }
 
+    public function redirectDeposit(Request $request){
+        $option = $request->optionConfirm;
+
+        switch ($option) {
+            case '1':
+                $user = User::find(auth()->user()->code);
+                $deposit = isset($user->balance) ? $user->balance : 0;
+                $userCurrency = Currency::find($user->default_currency);
+
+                if($userCurrency->acronym == $request->depositCurrency){
+                    $deposit = $deposit+$request->amount;
+                }else{
+                    $api = new ApiController;
+                    $deposit = $api->convertCurrency($request->amount, strtoupper($request->depositCurrency), $userCurrency->acronym);
+                }
+
+                $user->balance = $deposit; 
+                $user->save();
+
+                return redirect()->route('index');
+            case '2':
+                return redirect()->route('firstLevelOfAuth',[
+                    'option' => '2', 
+                    'warning'  => "let's try again"
+                ]);
+            default:
+                return redirect()->route('index');
+        }
     }
 
 }
