@@ -6,7 +6,7 @@
 
     <div class="main__content__chat">
         <p class="main__content__chat__user">Currency bot</p>
-        <p class="main__content__chat__message">Please, type your name</p>
+        <p class="main__content__chat__message">Please type your name</p>
     </div>   
    
     @if($name=="")
